@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\programming\common\v_repLib.cpp" />
+    <ClCompile Include="..\programming\v_repMath\3Vector.cpp" />
+    <ClCompile Include="..\programming\v_repMath\3X3Matrix.cpp" />
+    <ClCompile Include="..\programming\v_repMath\4Vector.cpp" />
+    <ClCompile Include="..\programming\v_repMath\4X4FullMatrix.cpp" />
+    <ClCompile Include="..\programming\v_repMath\4X4Matrix.cpp" />
+    <ClCompile Include="..\programming\v_repMath\7Vector.cpp" />
+    <ClCompile Include="..\programming\v_repMath\MyMath.cpp" />
+    <ClCompile Include="sourceCode\dynamics\CollShapeDyn.cpp" />
+    <ClCompile Include="sourceCode\dynamics\ConstraintDyn.cpp" />
+    <ClCompile Include="sourceCode\dynamics\ParticleContainer.cpp" />
+    <ClCompile Include="sourceCode\dynamics\ParticleDyn.cpp" />
+    <ClCompile Include="sourceCode\dynamics\ParticleObject.cpp" />
+    <ClCompile Include="sourceCode\dynamics\RigidBodyContainerDyn.cpp" />
+    <ClCompile Include="sourceCode\dynamics\RigidBodyDyn.cpp" />
+    <ClCompile Include="sourceCode\dynamics\vortex\CollShapeDyn_vortex.cpp" />
+    <ClCompile Include="sourceCode\dynamics\vortex\ConstraintDyn_vortex.cpp" />
+    <ClCompile Include="sourceCode\dynamics\vortex\ParticleDyn_vortex.cpp" />
+    <ClCompile Include="sourceCode\dynamics\vortex\RigidBodyContainerDyn_vortex.cpp" />
+    <ClCompile Include="sourceCode\dynamics\vortex\RigidBodyDyn_vortex.cpp" />
+    <ClCompile Include="sourceCode\v_repExtDynamics.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\programming\include\v_repLib.h" />
+    <ClInclude Include="..\programming\v_repMath\3Vector.h" />
+    <ClInclude Include="..\programming\v_repMath\3X3Matrix.h" />
+    <ClInclude Include="..\programming\v_repMath\4Vector.h" />
+    <ClInclude Include="..\programming\v_repMath\4X4FullMatrix.h" />
+    <ClInclude Include="..\programming\v_repMath\4X4Matrix.h" />
+    <ClInclude Include="..\programming\v_repMath\7Vector.h" />
+    <ClInclude Include="..\programming\v_repMath\MyMath.h" />
+    <ClInclude Include="sourceCode\dynamics\CollShapeDyn.h" />
+    <ClInclude Include="sourceCode\dynamics\ConstraintDyn.h" />
+    <ClInclude Include="sourceCode\dynamics\ParticleContainer.h" />
+    <ClInclude Include="sourceCode\dynamics\ParticleDyn.h" />
+    <ClInclude Include="sourceCode\dynamics\ParticleObject.h" />
+    <ClInclude Include="sourceCode\dynamics\RigidBodyContainerDyn.h" />
+    <ClInclude Include="sourceCode\dynamics\RigidBodyDyn.h" />
+    <ClInclude Include="sourceCode\dynamics\vortex\CollShapeDyn_vortex.h" />
+    <ClInclude Include="sourceCode\dynamics\vortex\ConstraintDyn_vortex.h" />
+    <ClInclude Include="sourceCode\dynamics\vortex\ParticleDyn_vortex.h" />
+    <ClInclude Include="sourceCode\dynamics\vortex\RigidBodyContainerDyn_vortex.h" />
+    <ClInclude Include="sourceCode\dynamics\vortex\RigidBodyDyn_vortex.h" />
+    <ClInclude Include="sourceCode\dynamics\vortex\VortexConvertUtil.h" />
+    <ClInclude Include="sourceCode\v_repExtDynamics.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{32BAA469-BEFD-952E-927D-133ACCDF42A7}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>v_repExtDynamicsVortex</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>v_repExtDynamicsVortex</TargetName>
+    <LibraryPath>$(VCInstallDir)lib\amd64;$(VCInstallDir)atlmfc\lib\amd64;C:\Program Files\Microsoft SDKs\Windows\v7.1\Lib\x64</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>INCLUDE_VORTEX_CODE;VX_DLL;DYNAMICS_PLUGIN_VERSION=10;LIBRARY_NAME="DynamicsVortex";ENGINE_NAME="Vortex";dynReal=double;NEW_VORTEX_SOURCE;WIN_VREP;NOMINMAX;WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>sourceCode\dynamics;sourceCode\dynamics\vortex;..\v_rep\sourceCode\interfaces;..\programming\common;..\programming\include;c:\local\boost_1_62_0;..\programming\v_repMath;c:/CM Labs/Vortex Studio 2017a/include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <OutputFile>$(OutDir)\$(ProjectName).dll</OutputFile>
+      <AdditionalDependencies>c:/CM Labs/Vortex Studio 2017a/lib/VxCore.lib;c:/CM Labs/Vortex Studio 2017a/lib/VxPlatform.lib;c:/CM Labs/Vortex Studio 2017a/lib/VxMath.lib;c:/CM Labs/Vortex Studio 2017a/lib/VxFoundation.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

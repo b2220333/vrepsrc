@@ -1,0 +1,47 @@
+CFLAGS =  -DINCLUDE_BULLET_2_83_CODE -DDYNAMICS_PLUGIN_VERSION=7 -DLIBRARY_NAME=\"DynamicsBullet\" -DENGINE_NAME=\"Bullet\" -DdynReal=float -DCOMPILING_EXTERNAL_DYN_DLL -Wall -fPIC -static
+
+OS = $(shell uname -s)
+ifeq ($(OS), Linux)
+    CFLAGS += -D__linux -DLIN_VREP
+    EXT = so
+else
+    CFLAGS += -D__APPLE__ -DMAC_VREP
+    EXT = dylib
+endif
+
+CFLAGS += -I../programming/include
+CFLAGS += -I../programming/v_repMath
+CFLAGS += -IsourceCode
+CFLAGS += -IsourceCode/dynamics
+CFLAGS += -I../v_rep/sourceCode/interfaces
+CFLAGS += -IsourceCode/dynamics/bullet_2_83
+
+all: 
+    @rm -f lib/*.*
+    @rm -f *.o 
+
+    gcc $(CFLAGS) -c ../programming/common/v_repLib.cpp -o v_repLib.o
+    gcc $(CFLAGS) -c ../programming/v_repMath/3Vector.cpp -o 3Vector.o
+    gcc $(CFLAGS) -c ../programming/v_repMath/4Vector.cpp -o 4Vector.o
+    gcc $(CFLAGS) -c ../programming/v_repMath/7Vector.cpp -o 7Vector.o
+    gcc $(CFLAGS) -c ../programming/v_repMath/3X3Matrix.cpp -o 3X3Matrix.o
+    gcc $(CFLAGS) -c ../programming/v_repMath/4X4Matrix.cpp -o 4X4Matrix.o
+    gcc $(CFLAGS) -c ../programming/v_repMath/4X4FullMatrix.cpp -o 4X4FullMatrix.o
+    gcc $(CFLAGS) -c ../programming/v_repMath/MyMath.cpp -o MyMath.o
+    gcc $(CFLAGS) -c sourceCode/dynamics/CollShapeDyn.cpp -o CollShapeDyn.o
+    gcc $(CFLAGS) -c sourceCode/dynamics/ConstraintDyn.cpp -o ConstraintDyn.o
+    gcc $(CFLAGS) -c sourceCode/dynamics/ParticleContainer.cpp -o ParticleContainer.o
+    gcc $(CFLAGS) -c sourceCode/dynamics/ParticleObject.cpp -o ParticleObject.o
+    gcc $(CFLAGS) -c sourceCode/dynamics/ParticleDyn.cpp -o ParticleDyn.o
+    gcc $(CFLAGS) -c sourceCode/dynamics/RigidBodyDyn.cpp -o RigidBodyDyn.o
+    gcc $(CFLAGS) -c sourceCode/dynamics/RigidBodyContainerDyn.cpp -o RigidBodyContainerDyn.o
+    gcc $(CFLAGS) -c sourceCode/v_repExtDynamics.cpp -o v_repExtDynamics.o
+
+    gcc $(CFLAGS) -c sourceCode/dynamics/bullet_2_83/CollShapeDyn_bullet283.cpp -o CollShapeDyn_bullet283.o
+    gcc $(CFLAGS) -c sourceCode/dynamics/bullet_2_83/ConstraintDyn_bullet283.cpp -o ConstraintDyn_bullet283.o
+    gcc $(CFLAGS) -c sourceCode/dynamics/bullet_2_83/ParticleDyn_bullet283.cpp -o ParticleDyn_bullet283.o
+    gcc $(CFLAGS) -c sourceCode/dynamics/bullet_2_83/RigidBodyDyn_bullet283.cpp -o RigidBodyDyn_bullet283.o
+    gcc $(CFLAGS) -c sourceCode/dynamics/bullet_2_83/RigidBodyContainerDyn_bullet283.cpp -o RigidBodyContainerDyn_bullet283.o
+
+    @mkdir -p lib
+    gcc *.o -o lib/libv_repExtDynamicsBullet-2-83.$(EXT) -lpthread -ldl -shared
